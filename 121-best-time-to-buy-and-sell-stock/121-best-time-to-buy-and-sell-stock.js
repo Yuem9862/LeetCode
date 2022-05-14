@@ -4,16 +4,14 @@
  */
 var maxProfit = function(prices) {
     
-    let lowestPrice = prices[0];
-    let currentPrice;
-    let highestProfit = 0;
+    let profit = 0;
+    let minPrice = prices[0];
     
-    for (let i = 0; i <prices.length; i++){
-        currentPrice = prices[i]
-        lowestPrice = Math.min(currentPrice, lowestPrice);
-        highestProfit = Math.max(currentPrice-lowestPrice, highestProfit)
+    for (let i = 0; i < prices.length; i++){
+        minPrice = Math.min(minPrice, prices[i])
+        let currentProfit = prices[i] - minPrice;
+        profit = Math.max(profit,currentProfit)
     }
     
-    return highestProfit;
-    
+    return profit;
 }
