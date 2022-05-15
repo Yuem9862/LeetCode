@@ -8,7 +8,6 @@ var countBits = function(n) {
     let numberOfBits;
     for (i = 0; i <= n; i++){
       numberOfBits = i.toString(2).replaceAll('0','').length;
-      console.log(numberOfBits);
       ans.push(numberOfBits);
     }
     return ans;
