@@ -9,14 +9,23 @@ var isPalindrome = function(s) {
     sArray = sArray.split('');
     let arrayCopy = [...sArray]
     
-    //create a stack
-    let stack = [];
-    while(sArray.length !==0){
-        stack.push(sArray.pop());
-    }
+    //OPTION 1:create a stack
+    // let stack = [];
+    // while(sArray.length !==0){
+    //     stack.push(sArray.pop());
+    // }
+    
+    //OPTION 2: array.reverse()
+    const stack = arrayCopy.reverse();
 
     //check
-    if (arrayCopy.join('') ===stack.join('')){
+    // if (arrayCopy.join('') ===stack.join('')){
+    //     return true;
+    // }else{
+    //     return false;
+    // }
+    
+    if (sArray.join('') ===stack.join('')){
         return true;
     }else{
         return false;
