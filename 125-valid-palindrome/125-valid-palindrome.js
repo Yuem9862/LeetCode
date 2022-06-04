@@ -14,10 +14,6 @@ var isPalindrome = function(s) {
     // while(sArray.length !==0){
     //     stack.push(sArray.pop());
     // }
-    
-    //OPTION 2: array.reverse()
-    const stack = arrayCopy.reverse();
-
     //check
     // if (arrayCopy.join('') ===stack.join('')){
     //     return true;
@@ -25,6 +21,11 @@ var isPalindrome = function(s) {
     //     return false;
     // }
     
+    
+    
+    //OPTION 2: array.reverse()
+    const stack = arrayCopy.reverse();
+    //check    
     if (sArray.join('') ===stack.join('')){
         return true;
     }else{
