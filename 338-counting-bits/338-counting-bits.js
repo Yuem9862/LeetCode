@@ -3,13 +3,26 @@
  * @return {number[]}
  */
 var countBits = function(n) {
-    
     let ans = [];
-    let numberOfBits;
-    for (i = 0; i <= n; i++){
-      numberOfBits = i.toString(2).replaceAll('0','').length;
-      ans.push(numberOfBits);
-    }
-    return ans;
     
+    for (let i = 0 ; i <= n; i ++){
+        
+        let numInBinary = i;
+        
+        //counting number of i in num
+        let counter = 0;
+        
+        while(numInBinary){
+            
+            if (numInBinary & 1 === 1){
+                counter++;
+            }
+            
+            numInBinary = numInBinary >> 1;
+        }
+            
+        ans.push(counter);
+    }
+    
+    return ans;
 };
