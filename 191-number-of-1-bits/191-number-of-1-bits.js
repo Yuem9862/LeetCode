@@ -3,12 +3,20 @@
  * @return {number}
  */
 var hammingWeight = function(n) {
-    let array = n.toString(2).split('');
-    let count = 0;
-    for (num of array){
-      if (num === '1'){
-        count++;
-      }
+    //SOLUTION 1: convert number to string
+    // let array = n.toString(2).split('');
+    // let count = 0;
+    // for (num of array){
+    //   if (num === '1'){
+    //     count++;
+    //   }
+    // }
+    // return count;
+    
+    let counter = 0;
+    while (n){
+        counter+= n%2;
+        n>>>=1;
     }
-    return count;
+    return counter;
 };
