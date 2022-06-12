@@ -15,7 +15,10 @@ var hammingWeight = function(n) {
     
     let counter = 0;
     while (n){
-        counter+= n%2;
+        // counter+= n%2;
+        if (n & 1 === 1){
+            counter++;
+        }
         n>>>=1;
     }
     return counter;
