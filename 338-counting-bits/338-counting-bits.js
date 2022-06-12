@@ -7,11 +7,9 @@ var countBits = function(n) {
     
     for (let i = 0 ; i <= n; i ++){
         
-        let numInBinary = i;
-        
-        //counting number of i in num
+        //counting number of 1's in the number i
+        let numInBinary = i;     
         let counter = 0;
-        
         while(numInBinary){
             
             if (numInBinary & 1 === 1){
