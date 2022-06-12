@@ -13,6 +13,7 @@ var hammingWeight = function(n) {
     // }
     // return count;
     
+    //SOLUTION 2: bit manipulation
     let counter = 0;
     while (n){
         // counter+= n%2;
