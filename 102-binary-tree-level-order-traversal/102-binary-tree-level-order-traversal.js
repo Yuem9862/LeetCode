@@ -11,6 +11,8 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
+    //BFS
+    
     if (root === null) return [];
     let output = [[root.val]];
     
@@ -27,9 +29,7 @@ var levelOrder = function(root) {
             child.push(nodes.right);
               
         }
-        
-       
-        
+                
         let result = [];
         for (const nodes of child){
             if (nodes === null){
