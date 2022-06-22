@@ -14,11 +14,20 @@
  */
 var lowestCommonAncestor = function(root, p, q) {
    
-    if ((p.val <= root.val && q.val >= root.val) || (q.val <= root.val && p.val >= root.val) ){
+    //recursive, move root
+    
+    if(p.val <= root.val && q.val >= root.val){
         return root;
-    } else if (p.val < root.val && q.val < root.val) {
-        return lowestCommonAncestor(root.left, p, q)
-    } else if (p.val > root.val && q.val > root.val) {
-        return lowestCommonAncestor(root.right, p, q)
     }
+     if(q.val <= root.val && p.val >= root.val){
+        return root;
+    }
+    if(p.val < root.val && q.val < root.val){
+        return lowestCommonAncestor(root.left, p, q);
+    }
+    
+    if(p.val > root.val && q.val > root.val){
+        return lowestCommonAncestor(root.right, p, q);
+    }
+    
 };
