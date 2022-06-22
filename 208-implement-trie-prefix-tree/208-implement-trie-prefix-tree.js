@@ -1,3 +1,23 @@
+// const trie = {
+//   end: false,
+//   children: {
+//     r: {
+//       end: false,
+//       children: {
+//         e: {
+//           end: false,
+//           children: {
+//             x: {
+//               end: true,
+//               children: {},
+//             },
+//           },
+//         },
+//       },
+//     },
+//   },
+// };
+
 
 var Trie = function() {
     this.trie = {};
