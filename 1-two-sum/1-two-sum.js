@@ -25,7 +25,7 @@ var twoSum = function(nums, target) {
     
     
     
-//use map to store value - index pair
+//OPTION 2: O (n) - use map to store value - index pair
   const map = {};
 
   for (let i = 0; i < nums.length; i++) {
