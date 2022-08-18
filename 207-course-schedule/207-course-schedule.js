@@ -19,7 +19,8 @@ var canFinish = function(numCourses, prerequisites) {
     return true;
     
     function dfs(i){
-        //base value
+        //base value - detect circle if i already been visited
+        //'false' means no circle detected previously
         if (visit[i]) return false;
         if (visit[i] === false) return true;
         
