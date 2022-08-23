@@ -11,41 +11,17 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-    //SOLUTION 1: Recursive
-//     if (!root) return null;
-//     let temp = root.left;
-//     root.left = root.right;
-//     root.right = temp;
-
-//     invertTree(root.left);
-//     invertTree(root.right);
     
-//     return root;
+    if (!root) {
+        return root;
+    };
     
-    //SOLUTION 2: Iterative (BFS)
-       
-    let queue = [root];
+    invertTree(root.left) ;
+    invertTree(root.right);
     
-    while (queue.length > 0){
-        
-        const child = []
-        
-        for (const node of queue){
-            if (!node){
-                continue;
-            }
-            
-            const temp = node.left;
-            node.left = node.right;
-            node.right = temp;
-            
-            child.push(node.left);
-            child.push(node.right);
-            
-        }
-        queue = child;
-    }
+    const temp = root.right;
+    root.right = root.left;
+    root.left = temp;
     
     return root;
-    
 };
