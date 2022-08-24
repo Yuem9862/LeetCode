@@ -12,22 +12,35 @@
  * @return {boolean}
  */
 var isSubtree = function(root, subRoot) {
-     
-    if (!root){
-        return false;
+    
+    if (!root || !subRoot) return false;
+   
+    let queue = [root];
+    
+    while (queue.length){
+        let curr = queue.shift();
+        if(curr.val === subRoot.val){
+            if (compare(curr, subRoot)){
+                return true;
+            };
+        }
+        
+        if (curr.left){
+            queue.push(curr.left);
+        }
+        if(curr.right){
+            queue.push(curr.right);
+        }
+        
     }
     
-    if (compare(root,subRoot)){
-      return true;
-    } 
+    return false;
     
-   
-    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
-   
- 
 };
 
-   var compare = function(root, subRoot){
+
+
+    var compare = function(root, subRoot){
        if (!root && !subRoot) return true;
        
        if (!root || !subRoot || root?.val !== subRoot?.val) return false;
