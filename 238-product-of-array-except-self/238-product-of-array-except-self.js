@@ -3,30 +3,18 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-  
-    // find patterns; break into 2 subarrays (prefix and suffix)
+    const result = [];
     
-    let prefix = [];
+    let prefix = 1
     for (let i = 0; i < nums.length; i++){
-        if (i===0){
-            prefix[i] = 1;
-        }else{
-            prefix[i] = prefix[i-1] * nums[i-1];
-        }
+        result[i] = prefix;
+        prefix = prefix * nums[i]
     }
     
-    let suffix = [];
-    for (let i = nums.length - 1; i >= 0 ; i--){
-        if (i === nums.length - 1){
-            suffix[i] = 1;
-        }else{
-            suffix[i] = suffix[i + 1] * nums [i + 1]
-        }
-    }
-    
-    let result = [];
-    for (let i = 0 ; i < nums.length; i ++){
-        result[i] = prefix[i] * suffix[i];
+    let postfix = 1
+    for (let i = nums.length - 1; i >= 0; i--){
+        result[i] = result[i] * postfix;
+        postfix = postfix * nums[i]
     }
     return result;
 };
