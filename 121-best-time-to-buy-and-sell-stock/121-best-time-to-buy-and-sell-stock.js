@@ -3,15 +3,13 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    
     let profit = 0;
-    let minPrice = prices[0];
+    let buy = prices[0]
     
     for (let i = 0; i < prices.length; i++){
-        minPrice = Math.min(minPrice, prices[i])
-        let currentProfit = prices[i] - minPrice;
-        profit = Math.max(profit,currentProfit)
+        buy = Math.min(buy, prices[i]);
+        profit = Math.max(profit, prices[i] - buy);
     }
-    
+   
     return profit;
-}
+};
