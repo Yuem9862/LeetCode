@@ -15,12 +15,9 @@ var findShortestSubArray = function(nums) {
         map[nums[i]]++;
     }
     
-    let arrOfValues = [];
-    
-    for (const key in map){
-        arrOfValues.push(map[key]);
-    }
-    
+    const arrOfValues = Object.values(map);
+
+
     const maxValue = arrOfValues.sort((a,b)=>b-a)[0];
     
     const degrees = Object.keys(map).filter(key => map[key] === maxValue);
