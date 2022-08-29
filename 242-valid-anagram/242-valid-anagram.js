@@ -3,43 +3,30 @@
  * @param {string} t
  * @return {boolean}
  */
-let isAnagram = function(s, t) {
-
-    // SOLUTION 1: ARRAY
-//     let stringS = s.split('').sort().join('');
-//     let stringT = t.split('').sort().join('');
-
-//     if (stringS === stringT){
-//         return true;
-//     }else{
-//         return false;
-//     }
+var isAnagram = function(s, t) {
     
-    
-    // SOLUTION 2: HASH TABLE
-    const hash = {};
-    
-    for (let i = 0; i < s.length; i++){
-        let char = s[i];
-        if (!(char in hash)){
-            hash[char] = 0;    
-        }
-        hash[char]++;
+    if (s.length !== t.length){
+        return false;
     }
-
-    for (let j = 0; j < t.length; j++){
-        let char2 = t[j];
-        if (char2 in hash){
-            hash[char2]--;
-        }else{
+    
+    let map = {};
+    
+    for (const char of s){
+        if (!map[char]){
+            map[char] = 0;
+        }
+        map[char]++;
+    }
+    
+    for (const char of t){
+        if (!map[char]){
             return false;
         }
+        map[char]--;
     }
-
-    for (const property in hash){
-        if (hash[property] !== 0){
-            return false;
-        }
+    
+    if(Object.values(map).find(num => num!==0)){
+        return false;
     }
     
     return true;
