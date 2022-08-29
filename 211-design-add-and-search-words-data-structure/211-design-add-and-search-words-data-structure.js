@@ -1,3 +1,4 @@
+//recursive
 
 var WordDictionary = function() {
     this.children = {}
