@@ -3,17 +3,20 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-
-    let hash = {};
     
-    strs.forEach((str)=>{
-        let sortedStr = str.split('').sort();
-        if (!(sortedStr in hash)){
-            hash[sortedStr] = [];
-        }
-        hash[sortedStr].push(str);
-    });
+    let ans = {};
     
+    for (const str of strs){
         
-    return Object.values(hash);
+        let protocal = str.split('').sort().join('');
+      
+        if (!(protocal in ans)){
+            ans[protocal] = [];
+        }
+        
+      ans[protocal].push(str);
+     
+    }
+
+    return Object.values(ans);
 };
