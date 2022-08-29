@@ -1,26 +1,8 @@
-// const trie = {
-//   end: false,
-//   children: {
-//     r: {
-//       end: false,
-//       children: {
-//         e: {
-//           end: false,
-//           children: {
-//             x: {
-//               end: true,
-//               children: {},
-//             },
-//           },
-//         },
-//       },
-//     },
-//   },
-// };
-
 
 var Trie = function() {
-    this.trie = {};
+    this.children = {};
+    this.word = false;
+    
 };
 
 /** 
@@ -28,15 +10,19 @@ var Trie = function() {
  * @return {void}
  */
 Trie.prototype.insert = function(word) {
-    let curr = this.trie;
-    word.split('').forEach(char=>{
-       if(!curr[char]){
-           curr[char] = {};
-       } 
-        curr = curr[char];
-    });
+    if(!word){
+        this.word = true;
+        return;
+    }
     
-    curr.end = true;
+    let head = word[0];
+    let tail = word.substring(1);
+    
+    if(!this.children[head]){
+        this.children[head] = new Trie();
+    }
+    
+    this.children[head].insert(tail);
 };
 
 /** 
@@ -44,14 +30,19 @@ Trie.prototype.insert = function(word) {
  * @return {boolean}
  */
 Trie.prototype.search = function(word) {
-    let curr = this.trie;
-    for (const char of word.split('')){
-        if(!curr[char]){
-            return false;
-        }
-        curr = curr[char];
+    if (!word){
+        return this.word;
     }
-    return (curr.end ? true : false);
+    
+    let head = word[0];
+    let tail = word.substring(1);
+    
+    if(!this.children[head]){
+        return false;
+    }
+    
+    return this.children[head].search(tail);
+    
 };
 
 /** 
@@ -59,14 +50,13 @@ Trie.prototype.search = function(word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-    let curr = this.trie;
-    for (const char of prefix.split('')){
-        if(!curr[char]){
-            return false;
-        }
-        curr = curr[char];
-    }
-    return true;
+    let head = this.children;
+		for (const char of prefix) {
+			if (!head[char]) return false;
+			head = head[char].children;
+		}
+		return true;
+    
 };
 
 /** 
