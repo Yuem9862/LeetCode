@@ -1,9 +1,7 @@
-var Node = function() {
-    this.children = {}
-    this.endOfWord = false
-}
+
 var WordDictionary = function() {
-    this.root = new Node();
+    this.children = {}
+    this.word = false;
 };
 
 /** 
@@ -11,18 +9,19 @@ var WordDictionary = function() {
  * @return {void}
  */
 WordDictionary.prototype.addWord = function(word) {
-    let curr = this.root;
+    if(!word){
+        this.word = true;
+        return;
+    }
     
-    for (const char of word){
-       
-        if (! (char in curr.children)){
-            curr.children[char] = new Node();
-        }
-        
-        curr = curr.children[char];
-    };
+    let head = word[0];
+    let tail = word.substring(1);
     
-    curr.endOfWord = true;
+   if (!this.children[head]) {
+        this.children[head] = new WordDictionary();
+    }
+    
+    this.children[head].addWord(tail);
 };
 
 /** 
@@ -30,34 +29,29 @@ WordDictionary.prototype.addWord = function(word) {
  * @return {boolean}
  */
 WordDictionary.prototype.search = function(word) {
+    if(!word){
+        return this.word;
+    }
     
-   //dfs
+    let head = word[0];
+    let tail = word.substring(1);
     
-    const dfs = function(index, node){
-        let curr = node;
-         for (let i = index; i < word.length; i++) {
-            const char = word.charAt(i);
-            
-            if (char === '.') {
-                for (const child of Object.values(curr.children)) {
-                    if (dfs(i + 1, child)) return true;
-                }
-                return false;
-            } else {
-                if (!(char in curr.children)) return false;
-              curr = curr.children[char]   
-               
-            }
+    //for wild card '.'
+    if(head === '.'){
+        let result = false;
+        
+        for (const letter in this.children){
+            result ||= this.children[letter].search(tail);
         }
         
-        return curr.endOfWord;
-    };
+        return result;
+    }
     
+    if(!this.children[head]){
+        return false;
+    }
     
-    
-    return dfs(0, this.root);
-   
-    
+    return this.children[head].search(tail);
 };
 
 /** 
