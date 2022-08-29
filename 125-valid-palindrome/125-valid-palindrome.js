@@ -3,33 +3,12 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    //convert the string into an array
-    let sArray = s.toLowerCase();
-    sArray = sArray.replace(/[^a-z0-9]/g,'');
-    sArray = sArray.split('');
-    let arrayCopy = [...sArray]
+    s = s.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
     
-    //OPTION 1:create a stack
-    // let stack = [];
-    // while(sArray.length !==0){
-    //     stack.push(sArray.pop());
-    // }
-    //check
-    // if (arrayCopy.join('') ===stack.join('')){
-    //     return true;
-    // }else{
-    //     return false;
-    // }
-    
-    
-    
-    //OPTION 2: array.reverse()
-    const stack = arrayCopy.reverse();
-    //check    
-    if (sArray.join('') ===stack.join('')){
-        return true;
-    }else{
-        return false;
+    for (let i = 0; i < s.length; i++){
+        if (s[i] !== s[s.length - 1 -i]){
+            return false;
+        }
     }
-
+    return true;
 };
