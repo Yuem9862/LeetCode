@@ -10,33 +10,17 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-
-
-
-var isValidBST = function(root) {
+var isValidBST = function(root, min = null, max = null) {
     
-    let valid = true;
-    if (root === null) return true;
+    //recursive
     
-    valid = valid && validateLeft(root.left, root.val) && validateRight(root.right, root.val);
-    valid = valid && isValidBST(root.left) && isValidBST(root.right);
+    //base case
+    if (max !==null && root.val >= max) return false;
+    if (min !==null && root.val <= min) return false;
     
-    return valid;
+    //recursion starts
+    if(root.left && !isValidBST(root.left, min, root.val)) return false;
+    if(root.right && !isValidBST(root.right, root.val, max)) return false;
+    
+    return true;
 };
-
-var validateLeft = function(root, nodeValue){
-    let valid = true;
-    if (root === null) return true;
-    if (root.val >= nodeValue) return false;
-    valid = valid && validateLeft(root.left, nodeValue) && validateLeft(root.right, nodeValue);
-    
-    return valid;
-}
-
-var validateRight = function (root, nodeValue) {
-    let valid = true;
-    if(root == null ) return true;
-    if(root.val <= nodeValue) return false;
-    valid = valid && validateRight(root.left, nodeValue) && validateRight(root.right, nodeValue);
-    return valid;
-}
