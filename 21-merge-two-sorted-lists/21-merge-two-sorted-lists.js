@@ -11,31 +11,30 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
-    
-
-    //create a new linked list by creating a dummy head and a current node
+   //two pointers;
     let dummyHead = new ListNode();
-    let newCurrent = dummyHead;
     
-    //use two pointerst to merge the two lists
+    let curr = dummyHead;
+    
     while(list1 && list2){
-        if (list1.val > list2.val){
-            newCurrent.next = list2;
+        if(list1.val > list2.val){
+            curr.next = list2;
             list2 = list2.next;
         }else{
-            newCurrent.next = list1;
+            curr.next = list1;
             list1 = list1.next;
         }
-        newCurrent = newCurrent.next;
-    }
-   
-    //when reaching the end of one of the list
-    if (list1){
-        newCurrent.next = list1;
-    }else if (list2){
-        newCurrent.next = list2;
+        curr = curr.next;
     }
     
-    //return the result
+    if(list1){
+        curr.next = list1;
+    }else if (list2){
+        curr.next = list2;
+    }
+    
     return dummyHead.next;
+    
+       
+    
 };
