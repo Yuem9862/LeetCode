@@ -12,28 +12,24 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-    //store the sorted tree as a stack
-    let arr = [];
-    
-    //use dfs to sort nodes and push nth nodes into the stack;
-    
-    
-    const dfs =(node)=>{
-        if(arr.length !==k){
-            if(node.left){
-                dfs(node.left);
-            }
-            arr.push(node.val);
-            if(node.right){
-                dfs(node.right);
-            }
+    //inorder traversal for k step
+    let ans = []
+    function inorder(root){
+        if(!root){
+            return;
+        }
+        
+        if(root.left){
+            inorder(root.left);   
+        }
+        
+        ans.push(root.val);
+        
+        if(root.right){
+            inorder(root.right);
         }
     }
     
-    dfs(root);
-    
-    //return the k-1th element in the stack
-    return arr[k - 1];
-    
+    inorder(root);
+    return ans[k-1]
 };
-
