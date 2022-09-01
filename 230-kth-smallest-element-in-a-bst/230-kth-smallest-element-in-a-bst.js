@@ -12,7 +12,7 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-    //inorder traversal for k step
+    //inorder traversal for k-1 step
     let ans = []
     function inorder(root){
         if(!root){
