@@ -2,44 +2,21 @@
  * @param {number} n
  * @return {number}
  */
+const cache = {};
 
-    //DP
-    let cache = {};
+var climbStairs = function(n) {
     
-    function climbStairs (n){
-        if (n in cache){
-            return cache[n];
-        }else{
-            if (n<=2){
-                return n;
-            }else{
-                cache[n] = climbStairs(n-1) + climbStairs(n-2);
-                return cache[n];
-            }
-        }
+    if(cache[n]){
+        return cache[n];
     }
-
     
-    //CLOSURE
-//     var climbStairs = function (){
-
-//         let cache = {};
-
-//          function climbClosure (n){
-//             if (n in cache){
-//                 return cache[n];
-//             }else{
-//                 if (n<=2){
-//                     return n;
-//                 }else{
-//                     cache[n] = climbClosure(n-1) + climbClosure(n-2);
-//                     return cache[n];
-//                 }
-//             }
-//         }
-
-//       return climbClosure;
-//     }
-
-//     const f = climbStairs();
-//     console.log(f(5))
+    if(n<=3){
+        return n;
+    }
+    
+        cache[n] = climbStairs(n-1)+climbStairs(n-2);
+        return cache[n] ;
+    
+    
+    
+};
