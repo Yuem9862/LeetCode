@@ -17,12 +17,11 @@ var wordBreak = function(s, wordDict, memo={}) {
             if(wordBreak(s.slice(word.length), wordDict, memo)){
                 memo[s] === true;
                 return true;
+            }else{
+                memo[s] = false;
             }
         }
-        
     }
-    
-    memo[s] = false;
     
     return false;
     
